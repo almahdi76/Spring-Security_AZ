@@ -84,10 +84,10 @@ public class Securityconfig {
         );
     }
     @Bean
-    public JdbcUserDetailsManager user(DataSource dataSource){
+    public JdbcUserDetailsManager user(DataSource dataSource,PasswordEncoder encoder){
         UserDetails admin=User.builder()
-                .password("111")
-                .username("aa")
+                .password(encoder.encode("111"))
+                .username("mon-nom")
                 .roles("ADMIN")
                 .build();
         JdbcUserDetailsManager jdbcUserDetailsManager=new JdbcUserDetailsManager(dataSource);
